@@ -1,22 +1,23 @@
-= form_for @post do |f|
-  - if @post.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@post.errors.count, "error")} prohibited this post from being saved:"
-      %ul
-        - @post.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :category
-    = f.text_field :category
-  .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :admin
-    = f.text_field :admin
-  .actions
-    = f.submit 'Save'
+= form_for @post, html: { class: "form form-horizontal post" } do |f|
+  .form-group
+    = f.label :title, class: 'control-label'
+    .controls
+      = f.text_field :title, class: 'form-control', required: true
+    = error_span(@post[:title])
+  .form-group
+    = f.label :category_id, class: 'control-label'
+    .controls
+      = f.text_field :category_id, class: 'form-control', required: true
+    = error_span(@post[:category_id])
+  .form-group
+    = f.label :body, class: 'control-label'
+    .controls
+      = f.text_field :body, class: 'form-control', required: true
+    = error_span(@post[:body])
+  .form-group
+    = f.label :admin_id, class: 'control-label'
+    .controls
+      = f.text_field :admin_id, class: 'form-control', required: true
+    = error_span(@post[:admin_id])
+  = f.submit nil,class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn btn-default'
