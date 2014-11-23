@@ -1,0 +1,16 @@
+- @posts.each do |post|
+  %article
+    %header
+      %h2
+        %a{href: frontend_show_post_path(post)}= post.title
+      %em= post.created_at
+      - if post.updated_at > post.created_at
+        \/
+        = post.updated_at
+
+    %p= post.body
+
+    %footer
+      %a{href: frontend_show_post_path(post) + '#comments'}
+        = surround 'Comments(', ')' do
+          =post.comment_ids.count
