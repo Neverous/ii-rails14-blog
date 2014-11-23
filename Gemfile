@@ -43,3 +43,5 @@ gem 'unicorn'
 gem 'rails_12factor', group: :production
 gem 'haml'
 gem 'haml-rails', group: :development
+
+gem 'twitter-bootstrap-rails'
