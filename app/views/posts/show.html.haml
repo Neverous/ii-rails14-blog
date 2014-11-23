@@ -9,7 +9,11 @@
 %p
   %strong= model_class.human_attribute_name(:category_id) + ':'
   %br
-  = @post.category_id
+  = @post.category
+%p
+  %strong= t('.tags') + ':'
+  %br
+  = @post.tags.join(', ')
 %p
   %strong= model_class.human_attribute_name(:body) + ':'
   %br
@@ -17,7 +21,7 @@
 %p
   %strong= model_class.human_attribute_name(:admin_id) + ':'
   %br
-  = @post.admin_id
+  = @post.admin
 
 
 = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'

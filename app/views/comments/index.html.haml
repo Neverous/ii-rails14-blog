@@ -15,8 +15,8 @@
       %tr
         %td= link_to comment.id, comment_path(comment)
         %td= comment.body
-        %td= comment.user_id
-        %td= comment.post_id
+        %td= comment.user
+        %td= comment.post
         %td=l comment.created_at
         %td
           = link_to t('.edit', :default => t("helpers.links.edit")), edit_comment_path(comment), :class => 'btn btn-default btn-xs'

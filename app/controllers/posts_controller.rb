@@ -23,6 +23,7 @@ class PostsController < ApplicationController
 
     def create
         @post = Post.new(post_params)
+        @post.admin = current_admin
         @post.save
         respond_with(@post)
     end
@@ -43,6 +44,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-        params.require(:post).permit(:title, :category_id, :body, :user_id)
+        params.require(:post).permit(:title, :category_id, :body, tag_ids: [])
     end
 end

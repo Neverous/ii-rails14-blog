@@ -25,7 +25,7 @@
           %span.icon-bar
           %span.icon-bar
           %span.icon-bar
-        %a.navbar-brand(href="#") Blog
+        %a.navbar-brand(href="/") Blog
         .navbar-collapse.collapse.navbar-responsive-collapse
           - if admin_signed_in?
             %ul.nav.navbar-nav
@@ -41,8 +41,12 @@
 
           - else
             %ul.nav.navbar-nav.pull-right
-              %li= link_to t(".logout"), destroy_user_session_path
+              %li= link_to t(".logout"), destroy_user_session_path, :method => :delete
               %li= link_to t(".edit"), edit_user_registration_path
+
+          - if admin_signed_in?
+            %ul.nav.navbar-nav.pull-right
+              %li= link_to 'Logout admin', destroy_admin_session_path, :method => :delete
 
     .container
       .row

@@ -9,11 +9,11 @@
 %p
   %strong= model_class.human_attribute_name(:user_id) + ':'
   %br
-  = @comment.user_id
+  = @comment.user
 %p
   %strong= model_class.human_attribute_name(:post_id) + ':'
   %br
-  = @comment.post_id
+  = @comment.post
 
 
 = link_to t('.back', :default => t("helpers.links.back")), comments_path, :class => 'btn btn-default'
