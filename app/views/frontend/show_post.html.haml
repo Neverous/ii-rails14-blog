@@ -1,2 +1,32 @@
-%h1 Frontend#show_post
-%p Find me in app/views/frontend/show_post.html.haml
+%h1= @post.title
+%em= @post.created_at
+- if @post.updated_at > @post.created_at
+  \/
+  = @post.updated_at
+
+%br
+%p!= @post.body
+
+%h3#comments Comments
+- @post.comments.each do |comment|
+  %article
+    %header
+      %strong= comment.user
+      %em= comment.created_at
+
+    = comment.body
+%br
+- if user_signed_in?
+  %h3#add_comment Add comment
+  = form_for @comment, url: { action: 'show_post'  }, html: { class: 'form form-horizontal comment' } do |f|
+    - @comment.errors.full_messages.each do |msg|
+      %p= msg
+    .form-group
+      = f.label :body, class: 'control-label'
+      .controls
+        = f.text_area :body, class: 'form-control', required: true
+      = error_span(@comment[:body])
+    = f.submit nil,class: 'btn btn-primary'
+
+- else
+  %strong log in to comment!

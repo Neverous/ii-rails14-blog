@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
-    get 'frontend/index'
+    get 'index', to: 'frontend#index'
 
-    get 'frontend/show_post/:id', to: 'frontend#show_post', as: 'frontend_show_post'
-
-    get 'frontend/add_comment/:post_id', to: 'frontend#add_comment', as: 'frontend_add_comment'
+    get 'show_post/:id', to: 'frontend#show_post', as: 'frontend_show_post'
+    post 'show_post/:id', to: 'frontend#show_post', as: 'frontend_show_post_add'
 
     devise_for :users
     devise_for :admins
