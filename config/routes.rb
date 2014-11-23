@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :tags
+
+  resources :categories
+
+  resources :comments
+
+  resources :posts
+
   devise_for :admins
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -6,7 +14,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-  root 'post#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
