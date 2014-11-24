@@ -8,17 +8,13 @@
 %p!= @post.body
 
 %h3#comments Comments
-- @post.comments.each do |comment|
-  %article
-    %header
-      %strong= comment.user
-      %em= comment.created_at
+%section#comments_list
+  = render partial: 'comment', collection: @post.comments
 
-    = comment.body
 %br
 - if user_signed_in?
   %h3#add_comment Add comment
-  = form_for @comment, url: { action: 'show_post'  }, html: { class: 'form form-horizontal comment' } do |f|
+  = form_for @comment, url: { action: 'show_post' }, html: { class: 'form form-horizontal comment' }, remote: true do |f|
     - @comment.errors.full_messages.each do |msg|
       %p= msg
     .form-group

@@ -1,7 +1,7 @@
 class FrontendController < ApplicationController
     before_action :authenticate_user!, only: [:add_comment]
 
-    respond_to :html
+    respond_to :html, :json
 
     def index
         @posts = Post.order('created_at DESC').all
@@ -16,13 +16,13 @@ class FrontendController < ApplicationController
             @comment.user = current_user
             @comment.save
 
-            if @comment.errors.any?
-                respond_with(@post, @comment)
+            if request.xhr? or @comment.errors.any?
+                return respond_with(@post, @comment)
             end
         end
 
         @comment = Comment.new
-        respond_with(@post, @comment)
+        return respond_with(@post, @comment)
     end
 
     private
