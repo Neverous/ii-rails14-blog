@@ -7,8 +7,14 @@
       - if post.updated_at > post.created_at
         \/
         = post.updated_at
+      %br
+      %em= post.category
+      %br
+      %em= post.tags.join(', ')
+      %br
+      %br
 
-    %p= post.body
+    %p!= post.body
 
     %footer
       %a{href: frontend_show_post_path(post) + '#comments'}
