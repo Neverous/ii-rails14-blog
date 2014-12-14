@@ -22,9 +22,15 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.new(comment_params)
-        @comment.save
-        respond_with(@comment)
+        @comment = comment_service.call CommentForm.new(comment_params)
+        if @comment
+            flash[:notice] = "Comment created"
+            respond_with(@comment)
+
+        else
+            flash[:error] = "Comment creation failed"
+            redirect_to new_comment_path
+        end
     end
 
     def update
@@ -38,11 +44,15 @@ class CommentsController < ApplicationController
     end
 
     private
-    def set_comment
-        @comment = Comment.find(params[:id])
-    end
+        def set_comment
+            @comment = Comment.find(params[:id])
+        end
 
-    def comment_params
-        params.require(:comment).permit(:body, :user_id, :post_id)
-    end
+        def comment_params
+            params.require(:comment).permit(:body, :user_id, :post_id)
+        end
+
+        def comment_service
+            @comment_service ||= CommentService.new
+        end
 end
