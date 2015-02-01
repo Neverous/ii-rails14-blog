@@ -21,6 +21,18 @@ class FrontendController < ApplicationController
         return respond_with(@post, @comment)
     end
 
+    def show_category
+        @category = Category.find(params[:id])
+        @posts = @category.posts.order('created_at DESC').all
+        respond_with(@category, @posts)
+    end
+
+    def show_tag
+        @tag = Tag.find(params[:id])
+        @posts = @tag.posts.order('created_at DESC').all
+        respond_with(@tag, @posts)
+    end
+
     private
         def post_params
             params[:comment][:user_id] = current_user.id.to_s

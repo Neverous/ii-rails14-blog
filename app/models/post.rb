@@ -11,4 +11,12 @@ class Post < ActiveRecord::Base
     def to_s
         return title
     end
+
+    def get_full_date
+        if updated_at > created_at
+            return created_at + '/' + updated_at
+        else
+            return created_at
+        end
+    end
 end

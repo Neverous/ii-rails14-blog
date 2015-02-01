@@ -1,0 +1,13 @@
+%header
+  %h2
+    = link_to post.title, frontend_show_post_path(post)
+  %em= post.get_full_date
+  |
+  %em
+    %a{href: frontend_show_category_path(post.category)}= post.category
+  |
+  %em!= post.tags.map{|tag| link_to tag, frontend_show_tag_path(tag)}.join(', ')
+  %br
+  %br
+
+%p!= post.body

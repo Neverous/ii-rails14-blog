@@ -1,3 +1,7 @@
+%header
+  %h1
+    Tag
+    = @tag
 - @posts.each do |post|
   %article
     = render partial: 'post', object: post
