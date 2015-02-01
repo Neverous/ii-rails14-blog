@@ -48,3 +48,4 @@ gem 'haml-rails', group: :development
 gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'virtus'
+gem 'wysiwyg-rails'
