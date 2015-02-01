@@ -15,6 +15,7 @@
 //= require jquery-ui/effect-highlight
 //= require twitter/bootstrap
 //= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 //
 //= require froala_editor.min.js
