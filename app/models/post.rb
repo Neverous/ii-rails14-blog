@@ -14,9 +14,9 @@ class Post < ActiveRecord::Base
 
     def get_full_date
         if updated_at > created_at
-            return created_at + '/' + updated_at
+            return created_at.to_s + '/' + updated_at.to_s
         else
-            return created_at
+            return created_at.to_s
         end
     end
 end
